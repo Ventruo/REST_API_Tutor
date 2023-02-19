@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "7fb0b56c-c0e1-424b-b177-060c11441c62",
+		"name": "TUTOR_SOA_M5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18422811"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/ping",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Song by Title from Genius",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/songs/search?title=money&token=",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"songs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "money"
+						},
+						{
+							"key": "token",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Song Detail from Genius",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/songs/?id=90475&token=",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"songs",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "90475"
+						},
+						{
+							"key": "token",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
