@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "6b103186-41cd-49c6-b00a-66c76a4cc1a7",
+		"name": "TUTOR_SOA_M4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13266601"
+	},
+	"item": [
+		{
+			"name": "Get All Students",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Add Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nik",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "abc@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "012345",
+							"type": "text"
+						},
+						{
+							"key": "height",
+							"value": "190",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "01/01/2000",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "M",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/students",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"students"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
