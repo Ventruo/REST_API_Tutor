@@ -1,3 +1,9 @@
+/*
+    Mohon maap, ini aslinya untuk minggu 3 guys.
+    Tapi dah kadung ketulis jadi eman kalo dihapus hehe
+    Jadi hiraukan saja xD
+*/
+
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {

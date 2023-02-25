@@ -83,7 +83,7 @@ const addUser = async (req, res) =>{
 
 const editUser = async (req,res) => {
     let {user_id} = req.params
-    let {age} = req.body
+    let {age, acc_balance} = req.body
 
     if(await !userExist(user_id))
         return res.status(404).send({
@@ -91,18 +91,22 @@ const editUser = async (req,res) => {
         })
 
     let [result, metadata] = await w2Database.query(
-        `update users set age = :age where user_id = :user_id`,
+        `update users set age = :age, acc_balance = acc_balance + :acc_balance where user_id = :user_id`,
         {
             replacements:{
                 age: age,
-                user_id: user_id
+                user_id: user_id,
+                acc_balance: acc_balance
             }
         }
     )
+    let updatedUser = await selectUserByID(user_id)
+    console.log(updatedUser)
     return res.status(200).send({
         'message': 'User successfully updated',
         'user_id': user_id,
-        'age': age
+        'age': updatedUser.age,
+        'acc_balance': toIdr(updatedUser.acc_balance)
     })
 }
 
@@ -114,23 +118,17 @@ const editUser = async (req,res) => {
 const selectUser = async (req,res) => {
     let {user_id} = req.params
     let {username} = req.query
-    console.log('inquery: ' + username)
     //Melakukan pengecekan apakah endpoint menerima param
     if(user_id){
-        let [user, metadata] = await w2Database.query(
-            `select * from users where user_id = :user_id`,
-            {
-                replacements:{
-                    user_id: user_id
-                }
-            }
-        )
+        let user = await selectUserByID(user_id)
         if(user.length == 0)
             return res.status(404).send({
                 'message': 'User not found'
             })
-        else
-            return res.status(200).send(user[0])
+        else{
+            user.acc_balance = toIdr(user.acc_balance)
+            return res.status(200).send(user)
+        }
     }
     //Jika tidak menerima param, berarti endpoint menerima query
     else{
@@ -141,6 +139,10 @@ const selectUser = async (req,res) => {
                 replacements: [keyword]
             }
         )
+        //Melakukan loop for each dari data yang difetch dan memformat properti acc_balance nya
+        users.forEach(user=>{
+            user.acc_balance = toIdr(user.acc_balance)
+        })
         return res.status(200).send(users)
     }
 }
@@ -174,7 +176,8 @@ module.exports = {
 /*
     Pembuatan helper function
     Helper function isDup() digunakan untuk mencari user dengan username yang sama.
-    Sedangkan userExist() digunakan untuk mencari user dengan ID yang diminta
+    Sedangkan userExist() digunakan untuk mencari user dengan ID yang diminta.
+    Function toIdr() digunakan untuk memformat int menjadi string dengan format "Rpxx.xxx"
 */
 async function isDup(username){
     let dup = await w2Database.query(
@@ -188,12 +191,34 @@ async function isDup(username){
 }
 
 async function userExist(userId){
-    let select = await w2Database.query(
-        `select * from users where user_id = ?`,
+    let select = await selectUserByID(userId)
+    return select.length > 0
+}
+
+/*
+    Function ini digunakan untuk mencari user berdasarkan userId nya
+    Function ini dipakai dengan asumsi user ID sudah terdaftar pada sistem
+ */
+async function selectUserByID(userId){
+    let [user, metadata] = await w2Database.query(
+        `select * from users where user_id = :user_id`,
         {
-            type: QueryTypes.SELECT,
-            replacements: [userId]
+            replacements:{
+                user_id: userId
+            }
         }
     )
-    return select.length > 0
+    return user[0]
+}
+
+/*
+    Function js yang dapat dimanfaatkan untuk memformat sebuah int berformat string
+    mata uang. Beberapa kode negara yang dapat digunakan seperti:
+    en-US, ja-JP, ko-KR. Untuk info lebih lengkap, budayakan cek dokumentasi :)
+ */
+function toIdr(amount){
+     return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+    }).format(amount);
 }

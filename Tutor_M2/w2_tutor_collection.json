@@ -51,6 +51,11 @@
 							"key": "age",
 							"value": "420",
 							"type": "text"
+						},
+						{
+							"key": "acc_balance",
+							"value": "69000",
+							"type": "text"
 						}
 					]
 				},
