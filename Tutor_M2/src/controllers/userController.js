@@ -85,7 +85,7 @@ const editUser = async (req,res) => {
     let {user_id} = req.params
     let {age, acc_balance} = req.body
 
-    if(await !userExist(user_id))
+    if(!await userExist(user_id))
         return res.status(404).send({
             'message': 'User not found!'
         })
@@ -121,7 +121,7 @@ const selectUser = async (req,res) => {
     //Melakukan pengecekan apakah endpoint menerima param
     if(user_id){
         let user = await selectUserByID(user_id)
-        if(user.length == 0)
+        if(!user)
             return res.status(404).send({
                 'message': 'User not found'
             })
@@ -192,7 +192,7 @@ async function isDup(username){
 
 async function userExist(userId){
     let select = await selectUserByID(userId)
-    return select.length > 0
+    return !!select
 }
 
 /*
