@@ -71,7 +71,7 @@ router.post("/", async (req, res) => {
 });
 
 // CONTOH UPDATE
-router.put("/id_user", async (req, res) => {
+router.put("/:id_user", async (req, res) => {
   let {name} = req.body;
   let {id_user} = req.params;
 
