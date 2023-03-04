@@ -1,7 +1,6 @@
 const { getDB } = require("../config/sequelize");
 const sequelize = getDB();
 const { Model, DataTypes } = require("sequelize");
-const Shop = require("./Shop");
 
 // Untuk membuat model sequelize, ada 2 cara :
 //  1. Pakai sequelize.define()
@@ -29,7 +28,13 @@ const Shop = require("./Shop");
 // });
 
 // Cara 2
-class User extends Model {}
+class User extends Model {
+  static associate(models){
+    // Relationship dengan shop
+    this.hasMany(models.Shop, {foreignKey: 'id_user'});
+  }
+}
+
 User.init(
   {
     id_user: {

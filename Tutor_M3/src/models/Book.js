@@ -2,7 +2,12 @@ const { getDB } = require("../config/sequelize");
 const sequelize = getDB();
 const { Model, DataTypes } = require("sequelize");
 
-class Book extends Model {}
+class Book extends Model {
+  static associate(models){
+    // Relationship dengan shop
+    this.belongsToMany(models.Shop, {through: models.ShopBook, foreignKey: 'id_book'})
+  }
+}
 Book.init(
   {
     id_book: {

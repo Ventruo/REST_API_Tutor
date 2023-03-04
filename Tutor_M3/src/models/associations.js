@@ -16,13 +16,13 @@ const ShopBook = require("./ShopBook");
 // A = source model, B = target model
 // A.hasMany(B), B.belongsTo(A)
 
-// Contoh one-to-many
+// Contoh many-to-many
 // A = source model, B = target model, 'C' = junction table
 // A.belongsToMany(B, {through: 'C'}), B.belongsToMany(A, {through: 'C'})
 
 // Pada tutor kali ini, relationshipnya adalah :
 // 1. 1 user bisa punya banyak toko, 1 toko cuman bisa dimiliki 1 user
-// 2. 1 toko bisa menyediakan banyak buku, 1 buka bisa tersedia di banyak toko
+// 2. 1 toko bisa menyediakan banyak buku, 1 buku bisa tersedia di banyak toko
 
 module.exports = function() {
   // 1

@@ -14,6 +14,8 @@ const db = new Sequelize(
   }
 );
 
+console.log('hehehhehe')
+
 module.exports = {
   initDB: () => {
     return db.authenticate();

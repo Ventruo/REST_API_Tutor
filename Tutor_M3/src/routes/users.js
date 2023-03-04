@@ -2,8 +2,6 @@ const { response } = require("express");
 const express = require("express");
 const { Op } = require("sequelize");
 const Shop = require("../models/Shop");
-
-// model
 const User = require("../models/User");
 
 const router = express.Router();
