@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "c719e444-4c5c-4348-9ca3-d368b1ce720e",
+		"name": "Tutor WS W6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13266634"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nrp",
+							"value": "219116799",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "WT Mhs",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qweqwe",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "MHS",
+							"description": "AST=Asisten | MHS=Mahasiswa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nrp",
+							"value": "219116799",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qweqwe",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint Asisten",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJucnAiOiIyMTkxMTY3OTkiLCJyb2xlIjoiTUhTIiwiaWF0IjoxNjgwOTYwODIzLCJleHAiOjE2ODA5NjQ0MjN9.PT_UOnhfykgyJ9hx9DcavwTApzunBE-AUEu4srTRMIg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/asisten-endpoint",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"asisten-endpoint"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Request By Asisten",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJucnAiOiIyMTkxMTY3OTgiLCJyb2xlIjoiQVNUIiwiaWF0IjoxNjgwOTYwNzQzLCJleHAiOjE2ODA5NjQzNDN9.O96kqCFFpd1LS-oP9-J_v-CkcYh5LlmYU8N0GTHig0w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/asisten-endpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"asisten-endpoint"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"27-IxLRi1rffZrvgmPB2B4/L5NUjWw\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Apr 2023 13:33:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Anda Asisten. Boleh Masuk\"\n}"
+				},
+				{
+					"name": "Request By Mahasiswa",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJucnAiOiIyMTkxMTY3OTkiLCJyb2xlIjoiTUhTIiwiaWF0IjoxNjgwOTYwODIzLCJleHAiOjE2ODA5NjQ0MjN9.PT_UOnhfykgyJ9hx9DcavwTApzunBE-AUEu4srTRMIg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/asisten-endpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"asisten-endpoint"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"33-YRLgtI6EX7gCeGHQtVaYGdVc57Y\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Apr 2023 13:33:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Anda Bukan Asisten. Hayo ngapain 🤨\"\n}"
+				}
+			]
+		}
+	]
+}
